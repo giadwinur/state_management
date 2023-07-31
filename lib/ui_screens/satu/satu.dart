@@ -2,42 +2,41 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:latihan_flutter_dua/ui_screens/dua/dua.dart';
-import 'package:latihan_flutter_dua/ui_screens/home/home.dart';
+import 'package:states_rebuilder/scr/state_management/listeners/on_reactive.dart';
 
-class Satu extends StatefulWidget {
+import '../home/data.dart';
+// import 'package:latihan_flutter_dua/ui_screens/home/home.dart';
+
+class Satu extends StatelessWidget {
   const Satu({super.key});
 
-  @override
-  State<Satu> createState() => _SatuState();
-}
-
-var x = 0;
-
-class _SatuState extends State<Satu> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           automaticallyImplyLeading: false,
-          title: const Text('Satu'),
+          title: Text(Random().nextInt(100).toString()),
         ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                x.toString(),
-                textScaleFactor: 2,
+                Random().nextInt(100).toString(),
+                textScaleFactor: 3,
+              ),
+              OnReactive(
+                () => Text(
+                  counter.state.toString(),
+                  textScaleFactor: 2,
+                ),
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
                     onPressed: () {
-                      setState(() {
-                        x = x + 10;
-                        print('yahut');
-                      });
+                      counter.state = counter.state + 10;
                     },
                     child: const Text(
                       "Tambah",
@@ -46,10 +45,7 @@ class _SatuState extends State<Satu> {
                   const SizedBox(width: 10),
                   ElevatedButton(
                     onPressed: () {
-                      setState(() {
-                        x = x - 10;
-                        print('yakin');
-                      });
+                      counter.state = counter.state + 10;
                     },
                     child: const Text(
                       "Kurang",
@@ -60,12 +56,12 @@ class _SatuState extends State<Satu> {
               const SizedBox(height: 50),
               ElevatedButton(
                 onPressed: () {
-                  print('hahah');
-                  final route = MaterialPageRoute(
-                    builder: (context) {
-                      return const Home();
-                    },
-                  );
+                  debugPrint('hahah');
+                  // final route = MaterialPageRoute(
+                  //   builder: (context) {
+                  //     return  Home();
+                  //   },
+                  // );
 
                   Navigator.pop(context);
                 },
@@ -76,7 +72,7 @@ class _SatuState extends State<Satu> {
               const SizedBox(height: 10),
               ElevatedButton(
                 onPressed: () {
-                  print('hihihi');
+                  debugPrint('hihihi');
                   final route = MaterialPageRoute(
                     builder: (context) {
                       return const Dua();
