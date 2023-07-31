@@ -1,10 +1,19 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:latihan_flutter_dua/ui_screens/satu/satu.dart';
 import 'package:latihan_flutter_dua/ui_screens/tiga/tiga.dart';
 
-class Dua extends StatelessWidget {
+class Dua extends StatefulWidget {
   const Dua({super.key});
 
+  @override
+  State<Dua> createState() => _DuaState();
+}
+
+var x = 0;
+
+class _DuaState extends State<Dua> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,6 +25,40 @@ class Dua extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              Text(Random().nextInt(100).toString()),
+              Text(
+                x.toString(),
+                textScaleFactor: 2,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        x = x + 10;
+                        print('yahut');
+                      });
+                    },
+                    child: const Text(
+                      "Tambah",
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  ElevatedButton(
+                    onPressed: () {
+                      setState(() {
+                        x = x - 10;
+                        print('yakin');
+                      });
+                    },
+                    child: const Text(
+                      "Kurang",
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 50),
               ElevatedButton(
                 onPressed: () {
                   print('dwdwi');
